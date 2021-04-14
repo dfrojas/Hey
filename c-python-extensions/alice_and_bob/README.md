@@ -20,6 +20,6 @@ This example generates one million random integers and are passed as arguments t
 
 With Python the time elapsed is 4.03 seconds and with C is 0.02 seconds. Cool, right?
 
-![alt result](https://github.com/dfrojas/exploring-c-extension-python/blob/master/result.png)
+![compare python with c-python extension](https://github.com/dfrojas/Hey/blob/main/c-python-extensions/alice_and_bob/result.png)
 
 Both was executed in the same machine.
