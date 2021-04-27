@@ -3,6 +3,7 @@ const MAX: i64 = 99999;
 use std::collections::HashMap;
 
 fn graph() -> HashMap<&'static str, HashMap<&'static str, i64>> {
+    // Just build the data structure needed.
 
     let nodes = vec!["P", "R", "Z", "A", "Y"];
 
@@ -32,6 +33,9 @@ fn graph() -> HashMap<&'static str, HashMap<&'static str, i64>> {
 }
 
 fn shortest_distance(initial_path: &'static str) -> HashMap<&'static str, i64> {
+    // Build the map of the distances. Where the initial node always
+    // will be zero, and the rest of nodes will be infinite, in our
+    // case infinite is just a big number: MAX->99999.
     let mut shortest_distances = HashMap::new();
 
     shortest_distances.insert(initial_path, 0);
@@ -52,6 +56,7 @@ fn dijkstra(
     destination:&'static str,
     mut graph:HashMap<&'static str, HashMap<&'static str, i64>>
 ) -> Vec<&'static str> {
+    // Execute the algorithm.
 
     let mut path: Vec<&str> = Vec::new();
 
@@ -61,8 +66,7 @@ fn dijkstra(
     while !graph.is_empty() {
         let next_node: &str = shortest.iter().min_by_key(|entry | entry.1).unwrap().0;
 
-        for parent_node in graph.get(next_node) {
-            for (adjacent, weight) in parent_node {
+        for (adjacent, weight) in graph.get(next_node).unwrap() {
                 let check_existence = shortest.get(adjacent);
                 if check_existence != None {
                     if weight + shortest[next_node] < shortest[adjacent] {
@@ -70,7 +74,6 @@ fn dijkstra(
                         previous.insert(adjacent, next_node);
                     }
                 }
-            }
         }
 
         shortest.remove(next_node);
