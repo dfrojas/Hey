@@ -47,15 +47,16 @@ fn shortest_distance(initial_path: &'static str) -> HashMap<&'static str, i64> {
 
 }
 
-fn main(){
+fn dijkstra(
+    origin:&'static str,
+    destination:&'static str,
+    mut graph:HashMap<&'static str, HashMap<&'static str, i64>>
+) -> Vec<&'static str> {
 
-    let mut origin: &str = "A";
-    let mut destination: &str = "P";
     let mut path: Vec<&str> = Vec::new();
 
     let mut previous:HashMap<&str, &str> = HashMap::new();
-    let mut shortest = shortest_distance(origin);
-    let mut graph = graph();
+    let mut shortest = shortest_distance(&origin);
 
     while !graph.is_empty() {
         let next_node: &str = shortest.iter().min_by_key(|entry | entry.1).unwrap().0;
@@ -85,6 +86,13 @@ fn main(){
 
     path.insert(0, origin);
 
-    println!("{:?}", path);
+    return path;
+    
+}
+
+fn main(){
+
+    let result = dijkstra("A", "Z", graph());
+    println!("{:?}", result);
 
 }
