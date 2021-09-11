@@ -1,0 +1,22 @@
+service: hello-serverless-rust
+provider:
+  name: aws
+  runtime: rust
+  memorySize: 128
+
+package:
+  individually: true
+
+plugins:
+  - serverless-rust
+
+functions:
+  hello_serverless:
+    # handler value syntax is `{cargo-package-name}.{bin-name}`
+    # or `{cargo-package-name}` for short when you are building a
+    # default bin for a given package.
+    handler: hello_serverless
+    events:
+      - http:
+          path: '/'
+          method: GET

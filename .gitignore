@@ -7,3 +7,6 @@ rootkey.csv
 /telebot
 /kctlid
 exec.py
+**/node_modules
+**.serverless
+**/target
